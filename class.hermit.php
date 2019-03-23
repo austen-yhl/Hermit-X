@@ -94,9 +94,9 @@ class hermit
         $this->_css('APlayer.min');
         $this->_js('APlayer.min', $this->settings('jsplace'));
         if (!$this->settings('debug')) {
-            $this->_js('hermit-load.min', 1);
+            $this->_js('color-thief.min,hermit-load', 1);
         } else {
-            $this->_js('hermit-load', 1);
+            $this->_js('color-thief.min,hermit-load', 1);
         }
     }
 
@@ -578,8 +578,7 @@ class hermit
             'low_security' => 0,
             'globalPlayer' => 0,
             'listFolded' => 0,
-            'proxy' => '',
-            'assetsPublicCDN' => 1,
+            'proxy' => ''
         );
 
         $settings = $this->_settings;
@@ -974,12 +973,7 @@ class hermit
     private function _css($css_str)
     {
         $css_arr = explode(',', $css_str);
-
-        if ($this->settings("assetsPublicCDN") && !is_admin()) {
-            $hermitAssetsUrl = 'https://cdn.jsdelivr.net/gh/moeplayer/hermit-x@' . HERMIT_VERSION;
-        } else {
-            $hermitAssetsUrl = HERMIT_URL;
-        }
+        $hermitAssetsUrl = HERMIT_URL;
 
         foreach ($css_arr as $key => $val) {
             $css_path = sprintf('%s/assets/css/%s.css', $hermitAssetsUrl, $val);
@@ -990,12 +984,7 @@ class hermit
     private function _libjs($js_str, $js_place = false)
     {
         $js_arr = explode(',', $js_str);
-
-        if ($this->settings("assetsPublicCDN") && !is_admin()) {
-            $hermitAssetsUrl = 'https://cdn.jsdelivr.net/gh/moeplayer/hermit-x@' . HERMIT_VERSION;
-        } else {
-            $hermitAssetsUrl = HERMIT_URL;
-        }
+        $hermitAssetsUrl = HERMIT_URL;
 
         foreach ($js_arr as $key => $val) {
             $js_path = sprintf('%s/assets/js/lib/%s.js', $hermitAssetsUrl, $val);
@@ -1006,12 +995,7 @@ class hermit
     private function _js($js_str, $js_place = false)
     {
         $js_arr = explode(',', $js_str);
-
-        if ($this->settings("assetsPublicCDN") && !is_admin()) {
-            $hermitAssetsUrl = 'https://cdn.jsdelivr.net/gh/moeplayer/hermit-x@' . HERMIT_VERSION;
-        } else {
-            $hermitAssetsUrl = HERMIT_URL;
-        }
+        $hermitAssetsUrl = HERMIT_URL;
 
         foreach ($js_arr as $key => $val) {
             $js_path = sprintf('%s/assets/js/%s.js', $hermitAssetsUrl, $val);
@@ -1057,16 +1041,9 @@ class hermit
 
     public function aplayer_init()
     {
-        if (!$this->settings('debug')) {
-            wp_localize_script('hermit-load.min', 'HermitX', array(
-                'ajaxurl' => admin_url('admin-ajax.php'),
-                'version' => HERMIT_VERSION,
-            ));
-        } else {
-            wp_localize_script('hermit-load', 'HermitX', array(
-                'ajaxurl' => admin_url('admin-ajax.php'),
-                'version' => HERMIT_VERSION,
-            ));
-        }
+        wp_localize_script('hermit-load', 'HermitX', array(
+            'ajaxurl' => admin_url('admin-ajax.php'),
+            'version' => HERMIT_VERSION,
+        ));
     }
 }

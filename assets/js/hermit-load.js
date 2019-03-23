@@ -70,6 +70,18 @@ function hermitInit() {
                             op.narrow = (op.narrow === "true");
                         }
                         ap[i] = new APlayer(op);
+                        var colorThief = new ColorThief();
+                        var setTheme = function setTheme(index) {
+                            if (!ap[i].list.audios[index].theme) {
+                                colorThief.getColorAsync(ap[i].list.audios[index].cover, function (color) {
+                                    ap[i].theme('rgb(' + color[0] + ', ' + color[1] + ', ' + color[2] + ')', index);
+                                });
+                            }
+                        };
+                        setTheme(ap[i].list.index);
+                        ap[i].on('listswitch', function (data) {
+                            setTheme(data.index);
+                        });
                         ap[i].parseRespons = response;
                         if (window.APlayerCall && window.APlayerCall[i]) window.APlayerCall[i]();
                         if (window.APlayerloadAllCall && aps.length != ap.length) {

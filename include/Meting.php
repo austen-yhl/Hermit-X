@@ -741,7 +741,7 @@ class Meting
     {
         switch ($this->server) {
             case 'netease':
-            $url = 'https://p3.music.126.net/'.$this->netease_encryptId($id).'/'.$id.'.jpg?param='.$size.'y'.$size;
+            $url = 'https://p3.music.126.net/'.$this->netease_encryptId($id).'/'.$id.'.jpg';
             break;
             case 'tencent':
             $url = 'https://y.gtimg.cn/music/photo_new/T002R'.$size.'x'.$size.'M000'.$id.'.jpg?max_age=2592000';

@@ -1,11 +1,11 @@
 <?php
 /*
-Plugin Name: Hermit X
-Plugin URI: https://blog.lwl12.com/read/hermit-x.html
+Plugin Name: Hermit X Garcherd
+Plugin URI: https://github.com/garchervar/Hermit-X
 Description: 音乐播放器 Hermit music player build for wordpress with APlayer
 Version: 2.9.6
 Author: Hermit X Developer Team
-Author URI: https://blog.lwl12.com/read/hermit-x.html#developer
+Author URI: https://github.com/garchervar
 */
 
 define('HERMIT_FILE', __FILE__);
@@ -18,7 +18,6 @@ global $HMT, $HMTJSON;
 
 require HERMIT_PATH . '/class.json.php';
 require HERMIT_PATH . '/class.hermit.php';
-require HERMIT_PATH . '/class.update.php';
 
 if (!isset($HMT)) {
     $HMT = new hermit();
@@ -26,10 +25,6 @@ if (!isset($HMT)) {
 
 if (!isset($HMTJSON)) {
     $HMTJSON = new HermitJson();
-}
-
-if (!isset($hmt_update)) {
-    $hmt_update = new Hermit_Update();
 }
 
 /**
